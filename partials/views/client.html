@@ -59,10 +59,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="well-{{ check.last_status | getStatusClass }}" ng-repeat="check in client.history | orderBy:predicate:reverse" ng-click="permalink($event, 'check', check.check)">
+            <tr class="well-{{ check.last_status | getStatusClass }}" ng-repeat="check in client.history | orderBy:predicate:reverse">
               <td data-title="Check" class="main" >
                 <silence-icon silenced="check.silenced" ng-click="silence($event, check)" ng-if="!user.isReadOnly()"></silence-icon>
-                {{ check.check }}
+                <a ng-href="#/client/{{ client.dc }}/{{ client.name }}?check={{ check.check }}" class="normal-text">{{ check.check }}</a>
               </td>
               <td data-title="Output" class="check-output">{{ check.last_result.output }}</td>
               <td data-title="Time" class="normal"><relative-time timestamp="check.last_execution"></relative-time></td>

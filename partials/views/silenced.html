@@ -50,12 +50,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="entry in filtered | orderBy:predicate:reverse | limitTo:filters.limit track by entry._id" ng-click="go('/silenced/'+entry._id)">
+              <tr ng-repeat="entry in filtered | orderBy:predicate:reverse | limitTo:filters.limit track by entry._id">
                 <td class="hide-mobile" ng-click="$event.stopPropagation()">
                   <input type="checkbox" ng-model="selected.ids[entry._id]" ng-if="!user.isReadOnly()"></input>
                 </td>
                 <td data-title="ID" class="main normal">
-                  <span ng-if="!user.isReadOnly()"><i class="fa fa-times" ng-click="delete($event, entry._id);"></i></span>{{ entry.id }}
+                  <span ng-if="!user.isReadOnly()"><i class="fa fa-times" ng-click="delete($event, entry._id);"></i></span>
+                  <a class="normal-text" ng-href="#/silenced/{{ entry._id }}">{{ entry.id }}</a>
                 </td>
                 <td data-title="DC" class="normal">{{ entry.dc }}</td>
                 <td data-title="Reason" class="normal" ng-bind-html="entry.reason"></td>

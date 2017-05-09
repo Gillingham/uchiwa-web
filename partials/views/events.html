@@ -55,7 +55,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="well-{{ event.check.status | getStatusClass }}" ng-repeat="event in filtered | buildEvents | orderBy:predicate:reverse | limitTo:filters.limit track by event._id" ng-click="go('/client/'+event.dc+'/'+event.client.name+'?check='+event.check.name)">
+              <tr class="well-{{ event.check.status | getStatusClass }}" ng-repeat="event in filtered | buildEvents | orderBy:predicate:reverse | limitTo:filters.limit track by event._id">
                 <td class="hide-mobile" ng-click="$event.stopPropagation()">
                   <!-- adding ng-click to get event info -->
                   <input type="checkbox" ng-model="selected.ids[event._id]" ng-if="!user.isReadOnly()"></input>
@@ -64,13 +64,17 @@
                   <span ng-click="event.client['dc'] = event.dc; silence($event, event.client)" ng-if="!user.isReadOnly()">
                     <silence-icon silenced="event.client.silenced"></silence-icon>
                   </span>
-                  <span class="dropdown-toggle" >{{ event.sourceName }}</span>
+                  <a ng-href="#/client/{{ event.dc }}/{{ event.client.name }}" class="normal-text">
+                    <span class="dropdown-toggle" >{{ event.sourceName }}</span>
+                  </a>
                 </td>
                 <td data-title="Check" class="main normal">
                   <span ng-click="silence($event, event)" ng-if="!user.isReadOnly()">
                     <silence-icon silenced="event.silenced"></silence-icon>
                   </span>
-                  <span class="main check-name" tooltip-placement="top" tooltip-trigger tooltip-html="'Subscriptions<br /><small>{{event.check.subscribers|arrayToString}}</small>'">{{ event.check.name }}</span>
+                  <a ng-href="#/client/{{ event.dc }}/{{ event.client.name }}?check={{ event.check.name }}" class="normal-text">
+                    <span class="main check-name" tooltip-placement="top" tooltip-trigger tooltip-html="'Subscriptions<br /><small>{{event.check.subscribers|arrayToString}}</small>'">{{ event.check.name }}</span>
+                  </a>
                 </td>
                 <td>
                   <span ng-if="event.action === 'flapping'">

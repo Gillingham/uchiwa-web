@@ -32,8 +32,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="datacenter in datacenters | orderBy:'name'" ng-click="go('/datacenters/' + datacenter.name)">
-                <td data-title="Name" class="main normal">{{ datacenter.name }}</td>
+              <tr ng-repeat="datacenter in datacenters | orderBy:'name'">
+                <td data-title="Name" class="main normal"><a class="normal-text" ng-href="#/datacenters/{{ datacenter.name }}">{{ datacenter.name }}</a></td>
                 <td data-title="Version" class="normal">{{ datacenter.info.sensu.version }}</td>
                 <td data-title="Redis" class="normal">
                   <span ng-if="!datacenter.info.redis.connected">Not</span> Connected

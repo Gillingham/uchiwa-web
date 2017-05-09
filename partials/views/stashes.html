@@ -46,12 +46,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="stash in filtered | buildStashes | orderBy:predicate:reverse | limitTo:filters.limit track by stash._id" ng-click="go('/stashes/'+stash._id)">
+              <tr ng-repeat="stash in filtered | buildStashes | orderBy:predicate:reverse | limitTo:filters.limit track by stash._id">
                 <td class="hide-mobile" ng-click="$event.stopPropagation()">
                   <input type="checkbox" ng-model="selected.ids[stash._id]" ng-if="!user.isReadOnly()"></input>
                 </td>
                 <td data-title="Path" class="main normal">
-                  <span ng-if="!user.isReadOnly()"><i class="fa fa-times" ng-click="delete($event, stash._id);"></i></span>{{ stash.path }}
+                  <span ng-if="!user.isReadOnly()"><i class="fa fa-times" ng-click="delete($event, stash._id);"></i></span>
+                  <a class="normal-text" ng-href="#/stashes/{{ stash._id }}">{{ stash.path }}</a>
                 </td>
                 <td data-title="DC" class="normal" >{{ stash.dc }}</td>
                 <td data-title="Created" class="normal">

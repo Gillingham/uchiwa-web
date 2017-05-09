@@ -159,6 +159,9 @@ pre.hljs .hljs-literal {
 pre.hljs .hljs-string {
   color: #718c00; }
 
+a.normal-text {
+  color: #FFFFFF; }
+
 /* Colors */
 /* Body, Sections and Headers */
 /* Breadcrumb */
